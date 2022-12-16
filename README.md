@@ -2,6 +2,8 @@
 
 ## About
 
+Introduction Video : [Friendstagram](https://www.youtube.com/watch?v=5tI39rxnvPc)
+
 Friendstagram is social network application inspired by Instagram.  
 Friendstagram have feature :  
 * Login system
