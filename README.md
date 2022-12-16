@@ -39,7 +39,9 @@ Using Mssql as database, using Entity Framework for interact with database.
 
 ### Friendship
 ![alt text](readme/images/friendship-request-send.jpg)
+
 ![alt text](readme/images/friendship-request.jpg)
+
 ![alt text](readme/images/friends.jpg)
 
 ### Database Diagram
