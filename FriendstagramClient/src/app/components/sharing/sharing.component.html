@@ -1,0 +1,75 @@
+<div class="container">
+  <ng-container *ngIf="sharingReady" >
+    <div class="row" >
+      <div class="col-sm-7 mx-auto" >
+        <div class="card mt-2" style="width: 100%">
+          <div class="card-body">
+            <h5 class="card-title">
+              <img
+                class="dropdown-toggle"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                width="40px"
+                height="40px"
+                [src]="processProfileImage(sharing.user?.profilePicture)"
+                style="border-radius: 50%"
+              />
+              <span
+                class="text-capitalize ms-2 cursor-pointer"
+                [routerLink]="'/' + sharing.user?.userName"
+              >
+                {{
+                  processProfileDisplayName(
+                    sharing.user?.userName,
+                    sharing.user?.displayName
+                  )
+                }}
+              </span>
+            </h5>
+            <p class="card-text">
+              {{ sharing.sharingText }}
+            </p>
+          </div>
+          <img
+            [src]="'https://localhost:44356/Images/' + sharing.path"
+            height="600px"
+            class="card-img-bottom"
+            alt="..."
+          />
+          <div class="mt-4 mb-4 w-100 d-flex justify-content-center">
+            <!-- <button class="btn btn-primary w-75" (click)="sharing.showComment = !sharing.showComment;" > -->
+            <button class="btn btn-primary w-75" (click)="toggleComments(sharing)">
+              <ng-container *ngIf="!sharing.showComment">Show comments</ng-container>
+              <ng-container *ngIf="sharing.showComment">Hide comments</ng-container>
+            </button>
+          </div>
+          <div *ngIf="sharing.showComment" class="mt-0 ms-2">
+            <ng-container>
+              <div *ngFor="let comment of sharing.comments">
+                <span style="font-weight: bold">{{
+                  processProfileDisplayName(
+                    comment.user.userName,
+                    comment.user.displayName
+                  )
+                }}</span>
+                :
+                {{ comment.commentText }}
+              </div>
+            </ng-container>
+
+            <hr />
+            <form [formGroup]="commentForm" (ngSubmit)="commentToSharing(sharing)">
+              <input
+                type="text"
+                class="form-control w-75 mx-auto mb-3"
+                placeholder="comment"
+                formControlName="comment"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,32 @@
+<!--
+    Test
+<button (click)="openModal()" >Open Modal</button>
+ -->
+
+
+<div class="friends-modal" #friendsModal >
+  <div class="friends-modal-header">
+    <div class="friends-modal-title">Friends</div>
+    <button class="modal-close-button"  (click)="closeModal()" >
+        &times;
+    </button>
+  </div>
+  <div class="friends-modal-body">
+
+    <ng-container *ngFor="let item of friendList" >
+      <div class="mb-2" >
+
+        <img width="40px" height="40px" style="border-radius: 50%;"
+            [src]="processProfileImage(item.profilePicture)" >
+
+        <span class="ms-1 cursor-pointer" (click)="goToProfile(item.userName)" >
+          {{processProfileDisplayName(item.userName, item.displayName) }} (@{{item.userName}})
+        </span>
+    </div>
+    </ng-container>
+
+
+
+  </div>
+</div>
+<div class="overlay" #overlay ></div>

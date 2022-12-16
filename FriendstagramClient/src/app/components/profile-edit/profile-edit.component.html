@@ -1,0 +1,38 @@
+<div class="container mt-5">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-sm-2">Displayed Name :</div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" #displayedNameInput [value]="commonInformation.displayName" />
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-sm-8 offset-sm-2" style="background-color: transparent;" >
+      <button class="btn btn-success mt-4 float-end" (click)="changeProfileInformation(displayedNameInput.value)">
+        Change Profile Information
+      </button>
+    </div>
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-center mt-5">
+    <div class="col-sm-2">Profile Picture :</div>
+    <div class="col-sm-6">
+      <input
+        type="file"
+        class="form-control"
+        (change)="previewProfileImage($event)"
+        #file
+      />
+      <img
+        [src]="imagePreviewSource"
+        style="border-radius: 50%"
+        width="200px"
+        height="200px"
+        class="mt-2"
+      />
+      <br />
+      <button class="btn btn-success mt-4" (click)="uploadProfileImage(file.files)">
+        Change Profile Picture
+      </button>
+    </div>
+  </div>
+</div>

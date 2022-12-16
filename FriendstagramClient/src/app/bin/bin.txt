@@ -1,0 +1,20 @@
+    <div class="card mt-2" style="width: 100%; ">
+      <div class="card-body">
+        <h5 class="card-title">
+          <img
+          class="dropdown-toggle"
+          id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+          width="40px" height="40px" src="assets/images/legolas1.jpg" style="border-radius: 50%;" >
+          Legolas
+        </h5>
+        <p class="card-text">
+          Elven forest #tbt
+        </p>
+      </div>
+      <img src="assets/images/legolas2.jpg" height="600px" class="card-img-bottom" alt="...">
+      <p class="card-text mt-3 ms-2">
+        Aragorn : Great <br>
+        Frodo : 😎😎  <br>
+        Sauron : Lame   <br>
+      </p>
+    </div>

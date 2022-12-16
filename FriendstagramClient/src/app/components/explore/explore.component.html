@@ -1,0 +1,21 @@
+<div class="container mt-5" >
+    <div class="photo-grid">
+        <ng-container *ngFor="let item of sharingList">
+          <div>
+            <img
+              [routerLink]=" '/s/' + item.sharingId"
+              class="w-100 mb-1 grid-sharing-image"
+              [src]="'https://localhost:44356/Images/' + item.path"
+            />
+          </div>
+        </ng-container>
+      </div>
+
+      <ng-container *ngIf="sharingList.length == 0" >
+        <div class="mb-5" >
+          There is no sharing in database. You can seed database.
+        </div>
+      </ng-container>
+
+</div>
+

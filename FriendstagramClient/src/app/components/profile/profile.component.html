@@ -1,0 +1,105 @@
+<ng-container *ngIf="!notExistUser" >
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 text-center" style="background-color: transparent">
+        <img
+          [src]="profileImageSrc"
+          width="200px"
+          height="200px"
+          style="border-radius: 50%"
+        />
+      </div>
+
+      <div class="col-sm-8 mt-3">
+        <div class="d-flex">
+          <span class="fs-2">{{ profileDisplayName }}</span>
+          <ng-container *ngIf="selfProfile">
+            <button
+              type="button"
+              class="btn btn-primary ms-3"
+              routerLink="/profile/edit"
+            >
+              Edit Profile
+            </button>
+          </ng-container>
+          <ng-container *ngIf="!selfProfile">
+            <ng-container *ngIf="haveFriendship">
+              <button
+                type="button"
+                class="btn btn-danger ms-3"
+                (click)="removeFriendship(profileId)"
+              >
+                Remove Friendship
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="!haveFriendship">
+              <ng-container *ngIf="!haveFriendRequest">
+                <button
+                  type="button"
+                  class="btn btn-primary ms-3"
+                  (click)="addFriend(profileId)"
+                >
+                  Add Friend
+                </button>
+              </ng-container>
+              <ng-container *ngIf="haveFriendRequest">
+                <button
+                  type="button"
+                  class="btn btn-secondary ms-3"
+                  (click)="revokeFriendshipRequest(profileId)"
+                >
+                  Request sent
+                </button>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div>
+          <span>(@{{ profileUsername }})</span>
+        </div>
+        <div class="mt-2">
+          <span>{{profileSharingCount}} Sharing</span>
+          <span class="ms-5 cursor-pointer" (click)="openFriendsModal()"
+            >{{profileFriendCount}} Friends</span
+          >
+          <app-friends-modal
+            [profileIdInput]="profileId"
+            #friendsModal
+          ></app-friends-modal>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <ng-container *ngFor="let gridRow of gridRowList; let i = index">
+        <div class="row">
+          <ng-container
+            *ngFor="let gridColumn of gridColumnList; let j = index"
+          >
+            <div class="col-sm-4" *ngIf="profileSharingList[i * 3 + j]">
+              <img
+                [routerLink]=" '/s/' + profileSharingList[i * 3 + j].sharingId "
+                class="w-100 mb-4 profile-sharing-image"
+                [src]="
+                  'https://localhost:44356/Images/' +
+                  profileSharingList[i * 3 + j].path
+                "
+              />
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="notExistUser" >
+  <div class="container" >
+    <div class="text-center fs-4 m-5" style="font-weight: bold; height: 400px;" >
+      This user doesn't exist in platform
+    </div>
+  </div>
+</ng-container>
+

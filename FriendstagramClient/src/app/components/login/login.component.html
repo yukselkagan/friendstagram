@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3 mx-auto">
+        <h2 class="mb-5 text-sc-mid">Login to Friendstagram</h2>
+        <div class="mb-3">
+          <label for="inputEmailname" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmailname"
+            aria-describedby="usernameHelp"
+            formControlName="email"
+          />
+          <div
+            class="form-text text-danger"
+            *ngIf="
+              loginForm.controls['email'].invalid &&
+              (loginForm.controls['email'].dirty ||
+                loginForm.controls['email'].touched)
+            "
+          >
+            <div>Need Email</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            formControlName="password"
+          />
+        </div>
+        <div
+          class="form-text text-danger"
+          *ngIf="
+            loginForm.controls['password'].invalid &&
+            (loginForm.controls['password'].dirty ||
+              loginForm.controls['password'].touched)
+          "
+        >
+          <div>Need password</div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 mb-4">Login</button>
+
+        <div><a routerLink="/">Homepage</a></div>
+        <div><a routerLink="/register">Haven't a Account Register</a></div>
+      </div>
+    </div>
+  </form>
+</div>

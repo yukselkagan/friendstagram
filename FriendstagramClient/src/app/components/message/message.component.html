@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <div class="row" style="min-height: 60vh;" >
+    <div class="col-sm-3 bg-primary2 border">
+      <div class="mt-2 d-flex align-items-center">
+        <div class="bold fs-3" style="font-weight: bold;" >Messaging</div>
+        <div (click)="openNewChatPanel()" >
+            <i class="bi bi-plus-square fs-5 ms-2 cursor-pointer"></i>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <ng-container *ngFor="let item of chatList" >
+          <div class="cursor-pointer mb-2" (click)="startChat(item.friend.userId)" >
+            <img [src]="processProfileImage(item.friend.profilePicture)" width="40px" height="40px"
+              style="border-radius: 50%;" >
+            {{item.friend.displayName}}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-sm-9 bg-danger2 border"   >
+      <ng-container *ngIf="contactFriendId != 0" >
+
+        <div class="mt-2 pb-2 border-bottom">
+          <img
+            [src]="processProfileImage(contactFriendInformation.profilePicture)"
+            width="40px"
+            height="40px"
+            style="border-radius: 50%"
+          />
+          {{processProfileDisplayName(contactFriendInformation.userName, contactFriendInformation.displayName) }}
+          (@{{contactFriendInformation.userName}})
+        </div>
+
+        <div class="p-2"
+          style="height: 50vh; flex-direction: column-reverse; display: flex;
+          overflow: auto;">
+
+          <ng-container *ngFor="let item of chatMessages.reverse()" >
+            <div [ngClass]="{'ms-auto' : item['receiverId'] == contactFriendId, 'received-message-text' : item['receiverId'] != contactFriendId }" >
+              {{item['messageText']}}
+            </div>
+          </ng-container>
+
+
+        </div>
+
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="mb-4 d-flex">
+            <div class="w-100">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Message"
+                formControlName="message"
+              />
+            </div>
+            <div>
+              <button class="btn btn-primary ms-1" type="submit" >Send</button>
+            </div>
+          </div>
+        </form>
+
+
+
+      </ng-container>
+    </div>
+
+
+
+  </div>
+</div>
+
+<app-contact-list-modal #contactListModal (startChatEvent)="startChat($event)" >
+</app-contact-list-modal>

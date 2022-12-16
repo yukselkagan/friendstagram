@@ -1,0 +1,16 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  justify-content: center;
+  grid-gap: 10px;
+}
+
+.grid-sharing-image {
+  height: 60vh;
+  //width: 100%;
+  cursor: pointer;
+}
+
+.grid-sharing-image:hover {
+  -webkit-filter: brightness(60%);
+}
